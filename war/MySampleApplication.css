@@ -1,0 +1,27 @@
+/** Add css rules here for your application. */
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+.mojaKlasa1 {
+    border: solid;
+    border-color: red;
+    text-align: left;
+}
+
+.mojaKlasa2 {
+    border: solid;
+    border-color: blue;
+    text-align: right;
+}
+
+.mojaKlasa3 {
+    border: solid;
+    border-color: blue;
+    margin-left: 200px ;
+}
+body, td, a, div, .p {
+    font-family: arial, sans-serif
+}
