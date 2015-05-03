@@ -22,32 +22,34 @@ public class MySampleApplication implements EntryPoint {
 
     private DeckPanel deckPanel = new DeckPanel();
 
+    private HorizontalPanel mainPanel = new HorizontalPanel();
 
-    private HorizontalPanel chatPanel = new HorizontalPanel();
-    private HorizontalPanel buttonBar = new HorizontalPanel();
+    private VerticalPanel chatPanel = new VerticalPanel();
+    private VerticalPanel buttonBar = new VerticalPanel();
     private HorizontalPanel historyPanel = new HorizontalPanel();
     private VerticalPanel thirdPanel = new VerticalPanel();
     private VerticalPanel messagePanel = new VerticalPanel();
+    private VerticalPanel messagePanel1 = new VerticalPanel();
     private String user = "";
-    private ArrayList<String> historyMessages =  new ArrayList<>() ;
-    final CellTable<String> cellTable = new CellTable<>();
+
+    final CellTable<String> talksTable = new CellTable<>();
+
     private String userName ;
 
     public void onModuleLoad() {
 
 
-        messagePanel.setSize("200px","200px");
+        messagePanel.setSize("200px","300px");
 //region pola
 
 
 
 
-        final Button dodajUser = new Button("dodaj user");
         final Button nawigatorHistoria = new Button("Historia");
         final Button aktywnyCzat = new Button("Aktywny czat");
         buttonBar.add(aktywnyCzat);
 
-        final Button wyswietlHistorie = new Button("wyswietl historie");
+
         final Button wyslij = new Button("Wyslij");
 
 
@@ -64,7 +66,7 @@ public class MySampleApplication implements EntryPoint {
 //region style
         label.addStyleName("mojaKlasa2");
         poleTekstowe.setWidth("200px");
-        poleTekstowe.setHeight("200px");
+        poleTekstowe.setHeight("50px");
 //endregion
 
 
@@ -73,8 +75,7 @@ public class MySampleApplication implements EntryPoint {
         aktywnyCzat.setVisible(false);
 
 //region zdarzenia
-final ScrollPanel scr = new ScrollPanel();
-        scr.add(new Label("zamienione panele"));
+
 
 
 nawigatorHistoria.addClickHandler(new ClickHandler() {
@@ -99,12 +100,11 @@ nawigatorHistoria.addClickHandler(new ClickHandler() {
 
             public void onPushEvent() {
 
-                MySampleApplicationService.App.getInstance().addMessage("ss", new callbackMessages(label));
                 Label l = new Label();
                 MySampleApplicationService.App.getInstance().getMessage("ss", new callbackMessages(l));
                 l.addStyleName("mojaKlasa1");
 
-                messagePanel.add(l);
+                messagePanel1.add(l);
             }
         }, "new-user");
 
@@ -130,18 +130,18 @@ nawigatorHistoria.addClickHandler(new ClickHandler() {
             }
         };
 
-        cellTable.addColumn(idTalksCollumn);
+        talksTable.addColumn(idTalksCollumn);
+talksTable.setTitle("Tabela rozmow");
 
-
-        cellTable.addCellPreviewHandler(new CellPreviewEvent.Handler<String>() {
+        talksTable.addCellPreviewHandler(new CellPreviewEvent.Handler<String>() {
             @Override
             public void onCellPreview(CellPreviewEvent<String> event) {
                 label.setText(event.getType().toString());
-                 if (event.getNativeEvent().getType().contains("click")){
-                     Window.alert(event.getValue());
-                     MySampleApplicationService.App.getInstance().returnTalk(event.getValue(),new callbackTalksId());
+                if (event.getNativeEvent().getType().contains("click")) {
+                    Window.alert(event.getValue());
+                    MySampleApplicationService.App.getInstance().returnTalk(event.getValue(), new callbackTalksId());
 
-                 }
+                }
             }
         });
 
@@ -163,35 +163,34 @@ nawigatorHistoria.addClickHandler(new ClickHandler() {
         });
 
 
-        thirdPanel.setStyleName("mojaKlasa3");
-        thirdPanel.setSize("100px","200px");
-        //region panel
 
-        buttonBar.add(userLabel);
+        RootPanel.get("slot1").add(userLabel);
         buttonBar.add(nawigatorHistoria);
         buttonBar.add(aktywnyCzat);
 
 
 
+
+        chatPanel.add(messagePanel1);
         chatPanel.add(poleTekstowe);
         chatPanel.add(wyslij);
-        chatPanel.add(messagePanel);
 
 
 
-        historyPanel.add(cellTable);
+        historyPanel.add(talksTable);
         historyPanel.add(messagePanel);
 
         deckPanel.add(l);
         deckPanel.add(chatPanel);
         deckPanel.add(historyPanel);
         deckPanel.showWidget(0);
+        mainPanel.add(buttonBar);
+        mainPanel.add(deckPanel);
 
 
+        RootPanel.get("slot1").add(mainPanel);
 
-        RootPanel.get("slot1").add(buttonBar);
-        RootPanel.get("slot1").add(deckPanel);
-  //      RootPanel.get("slot1").add(buttonBar);
+
 
 
 
@@ -200,7 +199,7 @@ nawigatorHistoria.addClickHandler(new ClickHandler() {
     }
 
 
-    private static class callbackMessages implements AsyncCallback<String> {
+    private  class callbackMessages implements AsyncCallback<String> {
         private Label label;
 
         public callbackMessages(Label label) {
@@ -208,7 +207,7 @@ nawigatorHistoria.addClickHandler(new ClickHandler() {
         }
 
         public void onSuccess(String result) {
-            label.setText(result);
+            label.setText( result+"  : "+MySampleApplication.this.userName);
         }
 
         public void onFailure(Throwable throwable) {
@@ -242,7 +241,7 @@ nawigatorHistoria.addClickHandler(new ClickHandler() {
             Window.alert(result.toString());
 
             for(String s:result)
-            MySampleApplication.this.cellTable.setRowData(result);
+            MySampleApplication.this.talksTable.setRowData(result);
         }
 
     }

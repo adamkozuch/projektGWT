@@ -34,12 +34,6 @@ public class MySampleApplicationServiceImpl extends RemoteServiceServlet impleme
     private String talk = "";
 
     public String getMessage(String msg) {
-//
-//        MongoClient mongoClient = new MongoClient("localhost");
-//
-//        MongoDatabase database = mongoClient.getDatabase("test");
-//
-//        MongoCollection<Document> collection   = database.getCollection("people");
 
 
         return message;
