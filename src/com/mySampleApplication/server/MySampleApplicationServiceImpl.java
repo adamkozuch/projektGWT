@@ -17,8 +17,9 @@ import com.mySampleApplication.client.MySampleApplicationService;
 import org.bson.BsonArray;
 import org.bson.BsonString;
 import org.bson.Document;
+import org.icepush.gwt.server.ServerPushCommandContext;
 import org.icepush.PushContext;
-import org.icepush.gwt.client.GWTPushContext;
+
 import sun.security.util.Password;
 
 import java.sql.Time;

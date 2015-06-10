@@ -42,24 +42,27 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Interfejsy/icepush-gwt-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../icepush-gwt-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/Interfejsy/icepush-gwt-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../icepush-gwt-1.0.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Interfejsy/icepush.jar!/" />
+          <root url="jar://$MODULE_DIR$/../icepush.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/Interfejsy/icepush.jar!/" />
+          <root url="jar://$MODULE_DIR$/../icepush.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="icepush-gwt-1.0" level="project" />
+    <orderEntry type="library" name="mongo-java-driver-3.0.2" level="project" />
+    <orderEntry type="library" name="icepush" level="project" />
   </component>
 </module>

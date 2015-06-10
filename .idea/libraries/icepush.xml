@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="icepush">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Uczelnia/Interfejsy/icepush.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Uczelnia/Interfejsy/icepush.jar!/" />
+    </SOURCES>
+  </library>
+</component>
